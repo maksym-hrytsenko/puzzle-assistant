@@ -1,0 +1,25 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods (if ever adopted)
+Pods/
+
+# macOS
+.DS_Store
+
+# Secrets / local config — never commit these
+*.env
+Secrets.plist
+*.p12
+*.mobileprovision
