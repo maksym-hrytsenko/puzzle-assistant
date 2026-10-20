@@ -45,6 +45,18 @@ struct ImageStore {
     }
 
     func load(relativePath: String) -> UIImage? {
-        UIImage(contentsOfFile: baseDirectory.appendingPathComponent(relativePath).path)
+        UIImage(contentsOfFile: url(relativePath).path)
+    }
+
+    func url(_ relativePath: String) -> URL {
+        baseDirectory.appendingPathComponent(relativePath)
+    }
+
+    func delete(relativePath: String) {
+        try? FileManager.default.removeItem(at: url(relativePath))
+    }
+
+    func deleteAll(for puzzleID: UUID) {
+        try? FileManager.default.removeItem(at: baseDirectory.appendingPathComponent(puzzleID.uuidString, isDirectory: true))
     }
 }

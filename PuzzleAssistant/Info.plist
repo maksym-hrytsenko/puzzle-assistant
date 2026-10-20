@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Пазл-помічник</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +21,9 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Puzzle Assistant uses the camera to photograph your puzzle's reference image and loose pieces so it can suggest where they belong.</string>
+	<string>Камера потрібна, щоб фотографувати картинку пазла та розкидані шматки.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Доступ до фото потрібен, щоб завантажити картинку пазла або фото шматків.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>

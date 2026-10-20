@@ -1,0 +1,6 @@
+opencv-contrib-python-headless==5.0.0.93
+numpy==2.5.4
+# Segment Anything 2.1 (piece outlines); weights download to models/ on first run.
+ultralytics==8.4.182
+torch==2.14.1
+torchvision==0.29.1

@@ -27,3 +27,12 @@ Pods/
 Secrets.plist
 *.p12
 *.mobileprovision
+
+# Python (piece matching test bench)
+.venv/
+__pycache__/
+tools/piece_matching/output/
+tools/piece_matching/models/
+PuzzleAssistant/MLModels/
+tools/ios_pipeline_check/.build/
+tools/ios_pipeline_check/output/

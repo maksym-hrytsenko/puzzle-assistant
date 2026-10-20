@@ -16,10 +16,10 @@ struct CameraCaptureView: View {
 
                 if authorizationDenied {
                     VStack(spacing: 12) {
-                        Text("Camera access is required")
+                        Text("Потрібен доступ до камери")
                             .font(.headline)
                             .foregroundStyle(.white)
-                        Text("Enable camera access in Settings to photograph your puzzle.")
+                        Text("Дозвольте доступ до камери в Параметрах, щоб фотографувати пазл.")
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.white.opacity(0.7))
                     }
@@ -56,7 +56,7 @@ struct CameraCaptureView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("Скасувати") { dismiss() }
                         .tint(.white)
                 }
             }
