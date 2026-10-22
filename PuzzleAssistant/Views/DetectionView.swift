@@ -9,10 +9,15 @@ struct DetectionView: View {
     let puzzle: Puzzle
 
     enum Mode: String, CaseIterable, Identifiable {
-        case locate = "Де місце?"
-        case delete = "Видалити"
-        case add = "Додати"
-        var id: String { rawValue }
+        case locate, delete, add
+        var id: Self { self }
+        var title: LocalizedStringKey {
+            switch self {
+            case .locate: return "Де місце?"
+            case .delete: return "Видалити"
+            case .add: return "Додати"
+            }
+        }
         var icon: String {
             switch self {
             case .locate: return "scope"
@@ -20,7 +25,7 @@ struct DetectionView: View {
             case .add: return "plus.viewfinder"
             }
         }
-        var hint: String {
+        var hint: LocalizedStringKey {
             switch self {
             case .locate: return "Торкніться шматка — покажу, де він на картині"
             case .delete: return "Торкніться погано обведеного шматка, щоб прибрати його"
@@ -48,16 +53,45 @@ struct DetectionView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            if !isDetecting {
-                Picker("Режим", selection: $mode) {
-                    ForEach(Mode.allCases) { Label($0.rawValue, systemImage: $0.icon).tag($0) }
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
+        AdaptiveSplit(panelWidth: 300) {
+            VStack(spacing: 0) {
+                if !isDetecting && verticalSizeClass != .compact { modePicker }
+                photoArea
             }
+        } panel: {
+            VStack(spacing: 0) {
+                if !isDetecting && verticalSizeClass == .compact {
+                    modePicker
+                    Spacer(minLength: 0)
+                }
+                bottomBar
+            }
+            .background(.bar)
+        }
+        .navigationTitle(zone.map { String(localized: "Ділянка «\($0.label)»") } ?? String(localized: "Шматки на фото"))
+        .navigationBarTitleDisplayMode(.inline)
+        .task { await start() }
+        .onDisappear { cancelFlag.cancel() }
+        .sheet(item: $selectedPiece) { piece in
+            PieceLocationView(piece: piece, puzzle: puzzle, zone: zone)
+        }
+        .alert("Помилка", isPresented: .constant(errorMessage != nil)) {
+            Button("OK") { errorMessage = nil }
+        } message: { Text(errorMessage ?? "") }
+    }
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    private var modePicker: some View {
+        Picker("Режим", selection: $mode) {
+            ForEach(Mode.allCases) { Label($0.title, systemImage: $0.icon).tag($0) }
+        }
+        .pickerStyle(.segmented)
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+
+    private var photoArea: some View {
             ZStack {
                 Color.black
                 if let photo {
@@ -78,19 +112,6 @@ struct DetectionView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-
-            bottomBar
-        }
-        .navigationTitle(zone.map { "Ділянка «\($0.label)»" } ?? "Шматки на фото")
-        .navigationBarTitleDisplayMode(.inline)
-        .task { await start() }
-        .onDisappear { cancelFlag.cancel() }
-        .sheet(item: $selectedPiece) { piece in
-            PieceLocationView(piece: piece, puzzle: puzzle, zone: zone)
-        }
-        .alert("Помилка", isPresented: .constant(errorMessage != nil)) {
-            Button("OK") { errorMessage = nil }
-        } message: { Text(errorMessage ?? "") }
     }
 
     // MARK: - Drawing
@@ -161,7 +182,7 @@ struct DetectionView: View {
                 .font(.subheadline.weight(.semibold))
             }
             HStack {
-                Text(isDetecting ? "Шукаю шматки…" : "Обведено шматків: \(capture.pieces.count)")
+                (isDetecting ? Text("Шукаю шматки…") : Text("Обведено шматків: \(capture.pieces.count)"))
                     .font(.subheadline.weight(.semibold))
                 Spacer()
                 if isAdding { ProgressView() }
@@ -170,7 +191,6 @@ struct DetectionView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(.bar)
     }
 
     // MARK: - Actions
@@ -206,12 +226,12 @@ struct DetectionView: View {
             capture.typicalPieceArea = result.typicalArea
             capture.detectionFinished = true
             if result.pieces.isEmpty {
-                showToast("Шматків не знайдено — спробуйте інше фото")
+                showToast(String(localized: "Шматків не знайдено — спробуйте інше фото"))
             } else {
                 Haptics.success()
             }
         } catch is CancellationError {
-            showToast("Пошук зупинено")
+            showToast(String(localized: "Пошук зупинено"))
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -242,7 +262,7 @@ struct DetectionView: View {
             if let hit {
                 Haptics.warning()
                 withAnimation { modelContext.delete(hit) }
-                showToast("Шматок прибрано")
+                showToast(String(localized: "Шматок прибрано"))
             }
         case .add:
             guard hit == nil, !isAdding else { return }
@@ -256,9 +276,9 @@ struct DetectionView: View {
                         modelContext.insert(piece)
                         piece.capture = capture
                         Haptics.success()
-                        showToast("Шматок додано")
+                        showToast(String(localized: "Шматок додано"))
                     } else {
-                        showToast("Тут не вдалося знайти шматок")
+                        showToast(String(localized: "Тут не вдалося знайти шматок"))
                     }
                 } catch {
                     errorMessage = error.localizedDescription

@@ -13,5 +13,5 @@ xcrun -sdk macosx metal "$root/PuzzleAssistant/Vision/Matching.metal" -o "$build
 v="$root/PuzzleAssistant/Vision"
 swiftc -O -o "$build/check" "$root/tools/ios_pipeline_check/main.swift" \
   "$v/MaskGeometry.swift" "$v/PixelBuffer.swift" "$v/BackgroundModel.swift" "$v/SAMSegmenter.swift" \
-  "$v/PieceDetector.swift" "$v/PuzzleGrid.swift" "$v/ReferenceMatcher.swift" "$v/ReferencePreparer.swift"
+  "$v/PieceDetector.swift" "$v/PuzzleGrid.swift" "$v/ReferenceMatcher.swift" "$v/ReferencePreparer.swift" "$v/PictureBoundary.swift"
 SAM_MODELS_DIR="$build/models" MATCHING_METALLIB="$build/Matching.metallib" "$build/check" "$root/img" "$out" 2>&1 | grep -v E5RT

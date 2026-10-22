@@ -3,9 +3,9 @@ import SwiftUI
 
 /// "Take a photo" / "Choose from library" buttons that deliver a UIImage.
 struct PhotoSourceButtons: View {
-    var cameraTitle = "Сфотографувати"
-    var libraryTitle = "З галереї"
-    var cameraHint = "Тримайте телефон паралельно до столу"
+    var cameraTitle: LocalizedStringKey = "Сфотографувати"
+    var libraryTitle: LocalizedStringKey = "З галереї"
+    var cameraHint: LocalizedStringKey = "Тримайте телефон паралельно до столу"
     let onImage: (UIImage) -> Void
 
     @State private var showCamera = false

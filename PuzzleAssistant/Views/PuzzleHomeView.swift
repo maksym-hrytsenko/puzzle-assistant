@@ -12,36 +12,47 @@ struct PuzzleHomeView: View {
     @State private var openedCapture: PieceCapture?
     @State private var openedZone: PuzzleZone?
     @State private var errorMessage: String?
+    @State private var shareURL: URL?
+    @State private var isPreparingShare = false
 
     private var freeCaptures: [PieceCapture] {
         puzzle.captures.filter { $0.zoneID == nil }.sorted { $0.capturedAt > $1.capturedAt }
     }
 
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                referenceCard
-                HStack(spacing: 12) {
-                    Button { showNewCapture = true } label: {
-                        ActionTile(icon: "camera.viewfinder", title: "Знайти місця шматків",
-                                   subtitle: "Сфотографуйте розкидані шматки й торкніться будь-якого")
-                    }
-                    Button { showZoneEditor = true } label: {
-                        ActionTile(icon: "square.dashed.inset.filled", title: "Зібрати ділянку",
-                                   subtitle: "Виділіть частину картини — знайду шматки саме для неї",
-                                   tint: Color(red: 0.73, green: 0.32, blue: 0.93))
-                    }
-                }
-                .buttonStyle(.plain)
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
-                if !puzzle.zones.isEmpty { zonesSection }
-                if !freeCaptures.isEmpty { capturesSection }
+    var body: some View {
+        Group {
+            if verticalSizeClass == .compact {
+                // Landscape: the picture on the left, everything else scrolls on the right.
+                HStack(alignment: .top, spacing: 16) {
+                    referenceCard
+                    ScrollView { sections.padding(.vertical) }.frame(width: 380)
+                }
+                .padding(.horizontal)
+                .padding(.top, 8)
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        referenceCard.frame(height: 340)
+                        sections
+                    }
+                    .padding()
+                }
             }
-            .padding()
         }
         .background(Color(.systemGroupedBackground))
         .navigationTitle(puzzle.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button(action: share) {
+                if isPreparingShare { ProgressView() } else { Image(systemName: "square.and.arrow.up") }
+            }
+            .disabled(isPreparingShare)
+        }
+        .sheet(item: $shareURL) { url in
+            ShareSheet(url: url).presentationDetents([.medium, .large])
+        }
         .task {
             reference = ImageStore.shared.load(relativePath: puzzle.referenceImagePath)
             await PuzzleEngine.shared.warmUp(puzzle.referenceInfo)
@@ -59,6 +70,26 @@ struct PuzzleHomeView: View {
         .alert("Помилка", isPresented: .constant(errorMessage != nil)) {
             Button("OK") { errorMessage = nil }
         } message: { Text(errorMessage ?? "") }
+    }
+
+    private var sections: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack(spacing: 12) {
+                    Button { showNewCapture = true } label: {
+                        ActionTile(icon: "camera.viewfinder", title: "Знайти місця шматків",
+                                   subtitle: "Сфотографуйте розкидані шматки й торкніться будь-якого")
+                    }
+                    Button { showZoneEditor = true } label: {
+                        ActionTile(icon: "square.dashed.inset.filled", title: "Зібрати ділянку",
+                                   subtitle: "Виділіть частину картини — знайду шматки саме для неї",
+                                   tint: Color(red: 0.73, green: 0.32, blue: 0.93))
+                    }
+                }
+                .buttonStyle(.plain)
+
+                if !puzzle.zones.isEmpty { zonesSection }
+                if !freeCaptures.isEmpty { capturesSection }
+            }
     }
 
     private var referenceCard: some View {
@@ -81,7 +112,7 @@ struct PuzzleHomeView: View {
                     ProgressView()
                 }
             }
-            .frame(height: 260)
+            .frame(maxHeight: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
 
             HStack {
@@ -141,11 +172,25 @@ struct PuzzleHomeView: View {
         }
     }
 
+    /// Packs the puzzle into a .puzzlemate file and opens the share sheet.
+    private func share() {
+        isPreparingShare = true
+        let manifest = PuzzleArchive.manifest(for: puzzle)
+        Task {
+            do {
+                shareURL = try await Task.detached(priority: .userInitiated) { try PuzzleArchive.write(manifest) }.value
+            } catch {
+                errorMessage = String(localized: "Не вдалося підготувати файл пазла.")
+            }
+            isPreparingShare = false
+        }
+    }
+
     private func startCapture(with image: UIImage, zone: PuzzleZone?) {
         do {
             openedCapture = try CaptureFactory.makeCapture(from: image, puzzle: puzzle, zone: zone, context: modelContext)
         } catch {
-            errorMessage = "Не вдалося зберегти фото."
+            errorMessage = String(localized: "Не вдалося зберегти фото.")
         }
     }
 
@@ -192,7 +237,7 @@ struct CaptureRow: View {
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             VStack(alignment: .leading, spacing: 4) {
                 Text(capture.capturedAt.formatted(date: .abbreviated, time: .shortened)).font(.subheadline.weight(.semibold))
-                Text(capture.detectionFinished ? "Знайдено шматків: \(capture.pieces.count)" : "Ще не оброблено")
+                (capture.detectionFinished ? Text("Знайдено шматків: \(capture.pieces.count)") : Text("Ще не оброблено"))
                     .font(.caption).foregroundStyle(.secondary)
             }
             Spacer()
@@ -206,7 +251,7 @@ struct CaptureRow: View {
 /// Sheet for choosing a photo of loose pieces.
 struct NewCaptureSheet: View {
     @Environment(\.dismiss) private var dismiss
-    let title: String
+    let title: LocalizedStringKey
     let onImage: (UIImage) -> Void
 
     var body: some View {
@@ -230,10 +275,14 @@ struct NewCaptureSheet: View {
         .presentationDetents([.medium, .large])
     }
 
-    private func tip(_ icon: String, _ text: String) -> some View {
+    private func tip(_ icon: String, _ text: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: icon).foregroundStyle(Theme.accent).frame(width: 24)
             Text(text).font(.subheadline)
         }
     }
+}
+
+extension URL: @retroactive Identifiable {
+    public var id: String { absoluteString }
 }

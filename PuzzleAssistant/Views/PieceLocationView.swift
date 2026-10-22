@@ -16,12 +16,43 @@ struct PieceLocationView: View {
 
     private var placements: [PlacementCandidate] { piece.placements ?? [] }
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    header
-                    referenceView
+            Group {
+                if verticalSizeClass == .compact {
+                    // Landscape: the picture fills the left side.
+                    HStack(spacing: 0) {
+                        referenceView.padding(8)
+                        ScrollView { details.padding() }.frame(width: 360)
+                    }
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
+                            header
+                            referenceView.frame(height: 300)
+                            details
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .background(Color(.systemGroupedBackground))
+            .navigationTitle("Де цей шматок?")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Готово") { dismiss() } }
+            }
+            .task { await load() }
+        }
+        .presentationDetents([.large])
+    }
+
+    @ViewBuilder
+    private var details: some View {
+        VStack(alignment: .leading, spacing: 16) {
+                    if verticalSizeClass == .compact { header }
                     if isSearching {
                         HStack(spacing: 12) {
                             ProgressView()
@@ -39,18 +70,7 @@ struct PieceLocationView: View {
                         }
                     }
                     actions
-                }
-                .padding()
-            }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Де цей шматок?")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) { Button("Готово") { dismiss() } }
-            }
-            .task { await load() }
         }
-        .presentationDetents([.large])
     }
 
     private var header: some View {
@@ -69,7 +89,7 @@ struct PieceLocationView: View {
                     Text("Рядок \(best.row) · стовпець \(best.column)").font(.title3.bold())
                     HStack {
                         Pill(text: "\(Int((best.probability * 100).rounded())) %", color: Theme.color(probability: best.probability))
-                        Text(placements.count > 1 ? "ще \(placements.count - 1) варіант(и)" : "єдиний варіант")
+                        (placements.count > 1 ? Text("ще \(placements.count - 1) варіант(и)") : Text("єдиний варіант"))
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     Text("Шматок на мініатюрі повернутий так, як він лежить на картині.")
@@ -119,7 +139,6 @@ struct PieceLocationView: View {
                 ProgressView().tint(.white)
             }
         }
-        .frame(height: 300)
         .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius, style: .continuous))
     }
 
@@ -142,7 +161,7 @@ struct PieceLocationView: View {
                 Haptics.success()
                 if piece.isPlaced { dismiss() }
             } label: {
-                Label(piece.isPlaced ? "Повернути в розкидані" : "Поклав(-ла) на місце",
+                Label(piece.isPlaced ? LocalizedStringKey("Повернути в розкидані") : LocalizedStringKey("Поклав(-ла) на місце"),
                       systemImage: piece.isPlaced ? "arrow.uturn.backward" : "checkmark.seal.fill")
             }
             .buttonStyle(PrimaryButtonStyle())
@@ -204,7 +223,7 @@ private struct CandidateRow: View {
                     Pill(text: "\(Int((candidate.probability * 100).rounded())) %", color: Theme.color(probability: candidate.probability))
                 }
                 Text("Рядок \(candidate.row) · стовпець \(candidate.column)").font(.subheadline)
-                Text(String(format: "%.0f %% ширини, %.0f %% висоти · збіг %.2f", candidate.x * 100, candidate.y * 100, candidate.score))
+                Text("\(Int((candidate.x * 100).rounded())) % ширини, \(Int((candidate.y * 100).rounded())) % висоти · збіг \(String(format: "%.2f", candidate.score))")
                     .font(.caption).foregroundStyle(.secondary)
             }
         }

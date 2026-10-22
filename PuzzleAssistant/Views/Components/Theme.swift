@@ -52,8 +52,8 @@ struct PrimaryButtonStyle: ButtonStyle {
 /// Big tappable tile with an icon, title and subtitle.
 struct ActionTile: View {
     let icon: String
-    let title: String
-    let subtitle: String
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey
     var tint: Color = Theme.accent
 
     var body: some View {

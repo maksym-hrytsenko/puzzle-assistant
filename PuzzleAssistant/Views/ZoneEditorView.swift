@@ -13,13 +13,41 @@ struct ZoneEditorView: View {
     @State private var selection: CGRect?
     @State private var label = ""
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
     var body: some View {
         NavigationStack {
-            VStack(spacing: 16) {
-                Text("Проведіть пальцем по картині, щоб виділити ділянку, яку збираєте зараз.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            Group {
+                if verticalSizeClass == .compact {
+                    HStack(spacing: 16) {
+                        picture
+                        ScrollView { controls }.frame(width: 300)
+                    }
+                } else {
+                    VStack(spacing: 16) {
+                        hint
+                        picture
+                        controls
+                    }
+                }
+            }
+            .padding()
+            .background(Color(.systemGroupedBackground))
+            .navigationTitle("Нова ділянка")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Скасувати") { dismiss() } } }
+            .task { reference = ImageStore.shared.load(relativePath: puzzle.referenceThumbnailPath) }
+        }
+    }
+
+    private var hint: some View {
+        Text("Проведіть пальцем по картині, щоб виділити ділянку, яку збираєте зараз.")
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var picture: some View {
                 GeometryReader { proxy in
                     if let reference {
                         let size = fitted(reference.size, in: proxy.size)
@@ -57,7 +85,11 @@ struct ZoneEditorView: View {
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+    }
 
+    private var controls: some View {
+            VStack(spacing: 16) {
+                if verticalSizeClass == .compact { hint }
                 if let selection {
                     let g = puzzle.grid
                     Label("≈ \(Int((selection.width * CGFloat(g.columns)).rounded())) × \(Int((selection.height * CGFloat(g.rows)).rounded())) шматків",
@@ -71,13 +103,6 @@ struct ZoneEditorView: View {
                     .buttonStyle(PrimaryButtonStyle(enabled: selection != nil))
                     .disabled(selection == nil)
             }
-            .padding()
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Нова ділянка")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Скасувати") { dismiss() } } }
-            .task { reference = ImageStore.shared.load(relativePath: puzzle.referenceThumbnailPath) }
-        }
     }
 
     private func fitted(_ image: CGSize, in container: CGSize) -> CGSize {
@@ -101,7 +126,7 @@ struct ZoneEditorView: View {
     private func save() {
         guard let selection else { return }
         let name = label.trimmingCharacters(in: .whitespaces)
-        let zone = PuzzleZone(label: name.isEmpty ? "Ділянка \(puzzle.zones.count + 1)" : name, rect: selection)
+        let zone = PuzzleZone(label: name.isEmpty ? String(localized: "Ділянка \(puzzle.zones.count + 1)") : name, rect: selection)
         modelContext.insert(zone)
         zone.puzzle = puzzle
         Haptics.success()

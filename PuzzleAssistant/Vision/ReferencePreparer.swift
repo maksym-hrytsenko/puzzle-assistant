@@ -12,6 +12,9 @@ enum ReferencePreparer {
         let original: CGImage
         /// Perspective-corrected picture, nil when no clear rectangle was found.
         let rectified: CGImage?
+        /// Detected corners of the picture (top-left, top-right, bottom-right,
+        /// bottom-left), normalized, y down; nil when none were found.
+        let corners: [CGPoint]?
     }
 
     /// The picture turned by 90° counter-clockwise.
@@ -29,15 +32,25 @@ enum ReferencePreparer {
 
     /// `image` must already be upright and at most `maxDimension` on its long side.
     static func prepare(_ upright: CGImage) -> Result {
-        Result(original: upright, rectified: rectify(upright))
+        // Best: SAM outline + line fit + edge snapping (see PictureBoundary).
+        if let sam = try? SAMSegmenter.shared.get(), let corners = PictureBoundary.corners(in: upright, sam: sam) {
+            return Result(original: upright, rectified: rectify(upright, corners: corners), corners: corners)
+        }
+        // Fallback: the whole picture is the largest rectangle; Vision alone
+        // sometimes returns only a part of it (e.g. above a fold of a poster).
+        let candidates = [visionQuad(upright), colorQuad(upright)].compactMap { $0 }
+        guard let quad = candidates.max(by: { Geometry.polygonArea($0) < Geometry.polygonArea($1) }) else {
+            return Result(original: upright, rectified: nil, corners: nil)
+        }
+        return Result(original: upright, rectified: correct(upright, quad: quad),
+                      corners: quad.map { CGPoint(x: $0.x, y: 1 - $0.y) })
     }
 
-    private static func rectify(_ image: CGImage) -> CGImage? {
-        // The whole picture is the largest rectangle; Vision alone sometimes
-        // returns only a part of it (e.g. above a fold of a poster).
-        let candidates = [visionQuad(image), colorQuad(image)].compactMap { $0 }
-        guard let quad = candidates.max(by: { Geometry.polygonArea($0) < Geometry.polygonArea($1) }) else { return nil }
-        return correct(image, quad: quad)
+    /// Perspective correction with corners set by the user (normalized, y down,
+    /// top-left, top-right, bottom-right, bottom-left).
+    static func rectify(_ image: CGImage, corners: [CGPoint]) -> CGImage? {
+        guard corners.count == 4 else { return nil }
+        return correct(image, quad: corners.map { CGPoint(x: $0.x, y: 1 - $0.y) })
     }
 
     /// Corners (top-left, top-right, bottom-right, bottom-left), normalized, y up (Core Image).

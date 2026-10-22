@@ -10,6 +10,8 @@ struct NewPuzzleView: View {
     @State private var prepared: ReferencePreparer.Result?
     @State private var useRectified = true
     @State private var quarterTurns = 0
+    @State private var manualRectified: CGImage?
+    @State private var showCornerEditor = false
     @State private var isProcessing = false
     @State private var isSaving = false
     @State private var errorMessage: String?
@@ -20,7 +22,7 @@ struct NewPuzzleView: View {
 
     private var chosenImage: CGImage? {
         guard let prepared else { return nil }
-        var image = useRectified ? (prepared.rectified ?? prepared.original) : prepared.original
+        var image = useRectified ? (manualRectified ?? prepared.rectified ?? prepared.original) : prepared.original
         for _ in 0..<quarterTurns {
             if let rotated = ReferencePreparer.rotatedLeft(image) { image = rotated }
         }
@@ -83,24 +85,29 @@ struct NewPuzzleView: View {
                     .scaledToFit()
                     .overlay { if let grid { GridOverlay(grid: grid) } }
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                if prepared?.rectified != nil || manualRectified != nil {
+                    Picker("", selection: $useRectified) {
+                        Text("Вирівняна").tag(true)
+                        Text("Як є").tag(false)
+                    }
+                    .pickerStyle(.segmented)
+                }
                 HStack {
-                    if prepared?.rectified != nil {
-                        Picker("", selection: $useRectified) {
-                            Text("Вирівняна").tag(true)
-                            Text("Як є").tag(false)
-                        }
-                        .pickerStyle(.segmented)
+                    Button {
+                        showCornerEditor = true
+                    } label: {
+                        Label("Кути", systemImage: "crop").frame(maxWidth: .infinity)
                     }
                     Button {
                         quarterTurns = (quarterTurns + 1) % 4
                     } label: {
-                        Label("Повернути", systemImage: "rotate.left")
+                        Label("Повернути", systemImage: "rotate.left").frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.bordered)
                 }
-                Text("Поверніть картинку так, як вона виглядає на коробці.")
+                .buttonStyle(.bordered)
+                Text("Якщо картину вирівняно неточно, натисніть «Кути» й поставте їх вручну. Потім поверніть її так, як вона виглядає на коробці.")
                     .font(.caption).foregroundStyle(.secondary)
-                if prepared?.rectified == nil {
+                if prepared?.rectified == nil && manualRectified == nil {
                     Label("Рамку картинки не знайдено — використаю фото як є. Обріжте його заздалегідь, якщо поруч є стіл.",
                           systemImage: "info.circle")
                         .font(.caption)
@@ -111,6 +118,14 @@ struct NewPuzzleView: View {
             }
             .padding(12)
             .card()
+            .sheet(isPresented: $showCornerEditor) {
+                if let prepared {
+                    CornerEditorView(image: prepared.original, initialCorners: prepared.corners) { corners in
+                        manualRectified = ReferencePreparer.rectify(prepared.original, corners: corners)
+                        useRectified = true
+                    }
+                }
+            }
         } else {
             PhotoSourceButtons(cameraHint: "Сфотографуйте всю картинку рівно, без відблисків", onImage: load)
         }
@@ -147,7 +162,7 @@ struct NewPuzzleView: View {
         .card()
     }
 
-    private func step<Content: View>(_ number: Int, _ title: String, _ hint: String?,
+    private func step<Content: View>(_ number: Int, _ title: LocalizedStringKey, _ hint: LocalizedStringKey?,
                                      @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
@@ -172,9 +187,10 @@ struct NewPuzzleView: View {
             await MainActor.run {
                 prepared = result
                 useRectified = result?.rectified != nil
+                manualRectified = nil
                 quarterTurns = 0
                 isProcessing = false
-                if result == nil { errorMessage = "Не вдалося відкрити зображення." }
+                if result == nil { errorMessage = String(localized: "Не вдалося відкрити зображення.") }
             }
         }
     }
@@ -183,7 +199,7 @@ struct NewPuzzleView: View {
         guard let image = chosenImage else { return }
         isSaving = true
         let id = UUID()
-        let title = name.trimmingCharacters(in: .whitespaces).isEmpty ? "Пазл на \(pieceCount)" : name
+        let title = name.trimmingCharacters(in: .whitespaces).isEmpty ? String(localized: "Пазл на \(pieceCount)") : name
         let count = pieceCount
         Task.detached(priority: .userInitiated) {
             let uiImage = UIImage(cgImage: image)
@@ -201,7 +217,7 @@ struct NewPuzzleView: View {
             } catch {
                 await MainActor.run {
                     isSaving = false
-                    errorMessage = "Не вдалося зберегти картинку."
+                    errorMessage = String(localized: "Не вдалося зберегти картинку.")
                 }
             }
         }

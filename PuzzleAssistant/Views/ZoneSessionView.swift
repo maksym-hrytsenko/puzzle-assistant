@@ -12,6 +12,7 @@ struct ZoneSessionView: View {
     @State private var openedCapture: PieceCapture?
     @State private var selectedPiece: DetectedPiece?
     @State private var errorMessage: String?
+    @State private var showAssembly = false
 
     private var captures: [PieceCapture] {
         puzzle.captures.filter { $0.zoneID == zone.id }.sorted { $0.capturedAt > $1.capturedAt }
@@ -34,6 +35,7 @@ struct ZoneSessionView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ZoneThumbnail(reference: reference, rect: zone.rect)
                         .aspectRatio(zoneAspect, contentMode: .fit)
+                        .frame(maxHeight: 280)
                         .overlay {
                             GridOverlay(grid: PuzzleGrid(columns: max(1, Int((zone.rect.width * CGFloat(puzzle.gridColumns)).rounded())),
                                                          rows: max(1, Int((zone.rect.height * CGFloat(puzzle.gridRows)).rounded()))))
@@ -45,11 +47,16 @@ struct ZoneSessionView: View {
                 .card()
 
                 Button { showNewCapture = true } label: {
-                    Label("Сфотографувати шматки для ділянки", systemImage: "camera.fill")
+                    Label(captures.isEmpty ? LocalizedStringKey("Сфотографувати шматки для ділянки") : LocalizedStringKey("Ще одне фото шматків"), systemImage: "camera.fill")
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(fitting.isEmpty ? PrimaryButtonStyle() : PrimaryButtonStyle(enabled: true))
 
                 if !fitting.isEmpty {
+                    Button { showAssembly = true } label: {
+                        Label("Збирати крок за кроком (\(fitting.count))", systemImage: "list.number")
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Підходять до ділянки").font(.title3.bold())
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 12)], spacing: 12) {
@@ -87,12 +94,13 @@ struct ZoneSessionView: View {
                 do {
                     openedCapture = try CaptureFactory.makeCapture(from: image, puzzle: puzzle, zone: zone, context: modelContext)
                 } catch {
-                    errorMessage = "Не вдалося зберегти фото."
+                    errorMessage = String(localized: "Не вдалося зберегти фото.")
                 }
             }
         }
         .sheet(item: $selectedPiece) { PieceLocationView(piece: $0, puzzle: puzzle, zone: zone) }
         .navigationDestination(item: $openedCapture) { DetectionView(capture: $0, puzzle: puzzle) }
+        .navigationDestination(isPresented: $showAssembly) { ZoneAssemblyView(zone: zone, puzzle: puzzle) }
         .alert("Помилка", isPresented: .constant(errorMessage != nil)) {
             Button("OK") { errorMessage = nil }
         } message: { Text(errorMessage ?? "") }

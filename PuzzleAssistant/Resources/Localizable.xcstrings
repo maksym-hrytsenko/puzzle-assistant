@@ -1,0 +1,2422 @@
+{
+  "sourceLanguage": "uk",
+  "version": "1.0",
+  "strings": {
+    "%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld %% ширини, %lld %% висоти · збіг %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld %% across, %lld %% down · match %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld %% ширины, %lld %% высоты · совпадение %@"
+          }
+        }
+      }
+    },
+    "%lld фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld photos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld фото"
+          }
+        }
+      }
+    },
+    "%lld шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld деталей"
+          }
+        }
+      }
+    },
+    "(через одну клітинку)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(one cell apart)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(через одну клетку)"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "«%@» додано: %lld фото шматків, %lld ділянок.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” added: %lld photos of pieces, %lld areas."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» добавлен: %lld фото деталей, %lld участков."
+          }
+        }
+      }
+    },
+    "«%@» оновлено: нових фото %lld, ділянок %lld, покладених шматків %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” updated: %lld new photos, %lld areas, %lld pieces placed."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» обновлён: новых фото %lld, участков %lld, уложенных деталей %lld."
+          }
+        }
+      }
+    },
+    "Інше фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Другое фото"
+          }
+        }
+      }
+    },
+    "Весь кадр": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whole frame"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Весь кадр"
+          }
+        }
+      }
+    },
+    "Видалити": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        }
+      }
+    },
+    "Виділіть частину картини — знайду шматки саме для неї": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select part of the picture — I’ll find pieces for exactly that part"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выделите часть картины — найду детали именно для неё"
+          }
+        }
+      }
+    },
+    "Вирівнюю картинку…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straightening the picture…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выравниваю картинку…"
+          }
+        }
+      }
+    },
+    "Вирівняна": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straightened"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выровненная"
+          }
+        }
+      }
+    },
+    "Вирівняти": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Straighten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выровнять"
+          }
+        }
+      }
+    },
+    "Відбираю цілі шматки…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Picking whole pieces…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отбираю целые детали…"
+          }
+        }
+      }
+    },
+    "Відкриваю пазл…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening the puzzle…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открываю пазл…"
+          }
+        }
+      }
+    },
+    "Галерея": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Галерея"
+          }
+        }
+      }
+    },
+    "Готова картинка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished picture"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готовая картинка"
+          }
+        }
+      }
+    },
+    "Готово": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готово"
+          }
+        }
+      }
+    },
+    "Готую фото…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing the photo…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готовлю фото…"
+          }
+        }
+      }
+    },
+    "Де він лежить?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where is it?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Где она лежит?"
+          }
+        }
+      }
+    },
+    "Де місце?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Где место?"
+          }
+        }
+      }
+    },
+    "Де цей шматок?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does it go?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Где эта деталь?"
+          }
+        }
+      }
+    },
+    "Додати": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить"
+          }
+        }
+      }
+    },
+    "Дозвольте доступ до камери в Параметрах, щоб фотографувати пазл.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow camera access in Settings to photograph your puzzle."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разрешите доступ к камере в Настройках, чтобы фотографировать пазл."
+          }
+        }
+      }
+    },
+    "Ділянка %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Участок %lld"
+          }
+        }
+      }
+    },
+    "Ділянка «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area “%@”"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Участок «%@»"
+          }
+        }
+      }
+    },
+    "Ділянки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Areas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Участки"
+          }
+        }
+      }
+    },
+    "З галереї": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From library"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Из галереи"
+          }
+        }
+      }
+    },
+    "Завантажте готову картинку пазла й вкажіть кількість шматків. Потім фотографуйте розкидані шматки — застосунок покаже, де кожен з них лежить на картині.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add the finished puzzle picture and the number of pieces. Then photograph loose pieces — the app shows where each of them belongs on the picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Загрузите готовую картинку пазла и укажите количество деталей. Затем фотографируйте разбросанные детали — приложение покажет, где каждая из них находится на картине."
+          }
+        }
+      }
+    },
+    "Закрийте застосунок (змахніть його вгору в перемикачі програм) і відкрийте знову — інтерфейс буде новою мовою.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close the app (swipe it up in the app switcher) and open it again — the interface will be in the new language."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закройте приложение (смахните его вверх в переключателе программ) и откройте снова — интерфейс будет на новом языке."
+          }
+        }
+      }
+    },
+    "Збирати крок за кроком (%lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assemble step by step (%lld)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Собирать шаг за шагом (%lld)"
+          }
+        }
+      }
+    },
+    "Збираємо «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assembling “%@”"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Собираем «%@»"
+          }
+        }
+      }
+    },
+    "Знайдено шматків: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pieces found: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Найдено деталей: %lld"
+          }
+        }
+      }
+    },
+    "Знайти місця шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find where pieces go"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Найти места деталей"
+          }
+        }
+      }
+    },
+    "Зупинити": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остановить"
+          }
+        }
+      }
+    },
+    "Зібрати ділянку": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assemble an area"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Собрать участок"
+          }
+        }
+      }
+    },
+    "Кладіть ліворуч від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it to the left of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите слева от детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть над шматком з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it above the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите над деталью из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть по діагоналі: вище й лівіше від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it diagonally: above and to the left of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите по диагонали: выше и левее детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть по діагоналі: вище й правіше від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it diagonally: above and to the right of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите по диагонали: выше и правее детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть по діагоналі: нижче й лівіше від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it diagonally: below and to the left of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите по диагонали: ниже и левее детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть по діагоналі: нижче й правіше від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it diagonally: below and to the right of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите по диагонали: ниже и правее детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть поруч зі шматком з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it next to the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите рядом с деталью из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть праворуч від шматка з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it to the right of the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите справа от детали из шага %lld."
+          }
+        }
+      }
+    },
+    "Кладіть під шматком з кроку %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place it below the piece from step %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кладите под деталью из шага %lld."
+          }
+        }
+      }
+    },
+    "Крок %lld з %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step %lld of %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шаг %lld из %lld"
+          }
+        }
+      }
+    },
+    "Кути": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corners"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Углы"
+          }
+        }
+      }
+    },
+    "Кути картини": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Picture corners"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Углы картины"
+          }
+        }
+      }
+    },
+    "Кількість": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Количество"
+          }
+        }
+      }
+    },
+    "Кількість шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Number of pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Количество деталей"
+          }
+        }
+      }
+    },
+    "Метод не впевнений: жодне місце не виділяється. Так буває зі шматками без помітних деталей (небо, вода, листя).": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not sure: no place stands out. This happens with pieces without distinct details (sky, water, leaves)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Метод не уверен: ни одно место не выделяется. Так бывает с деталями без заметных элементов (небо, вода, листва)."
+          }
+        }
+      }
+    },
+    "Мова": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Язык"
+          }
+        }
+      }
+    },
+    "Мову змінено": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language changed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Язык изменён"
+          }
+        }
+      }
+    },
+    "Моделі SAM 2.1 не знайдено в застосунку. Запустіть scripts/download_sam_models.sh і зберіть застосунок знову.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SAM 2.1 models are missing from the app. Run scripts/download_sam_models.sh and build the app again."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Модели SAM 2.1 не найдены в приложении. Запустите scripts/download_sam_models.sh и соберите приложение заново."
+          }
+        }
+      }
+    },
+    "Можливо: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maybe: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Возможно: %lld"
+          }
+        }
+      }
+    },
+    "Мої пазли": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My puzzles"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мои пазлы"
+          }
+        }
+      }
+    },
+    "Місце %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Place %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Место %lld"
+          }
+        }
+      }
+    },
+    "Назва": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Название"
+          }
+        }
+      }
+    },
+    "Назва ділянки, напр. «Сова»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area name, e.g. “Owl”"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Название участка, напр. «Сова»"
+          }
+        }
+      }
+    },
+    "Напр. «Чарівний ліс»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E.g. “Enchanted forest”"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Напр. «Волшебный лес»"
+          }
+        }
+      }
+    },
+    "Не вдалося відкрити зображення.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t open the image."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось открыть изображение."
+          }
+        }
+      }
+    },
+    "Не вдалося зберегти картинку.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t save the picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось сохранить картинку."
+          }
+        }
+      }
+    },
+    "Не вдалося зберегти фото.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t save the photo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось сохранить фото."
+          }
+        }
+      }
+    },
+    "Не вдалося підготувати зображення пазла.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t prepare the puzzle picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось подготовить изображение пазла."
+          }
+        }
+      }
+    },
+    "Не вдалося підготувати файл пазла.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t prepare the puzzle file."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось подготовить файл пазла."
+          }
+        }
+      }
+    },
+    "Нейромережа обводить кожен шматок окремо": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The neural network outlines every piece separately"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нейросеть обводит каждую деталь отдельно"
+          }
+        }
+      }
+    },
+    "Нова ділянка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New area"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый участок"
+          }
+        }
+      }
+    },
+    "Новий пазл": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New puzzle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый пазл"
+          }
+        }
+      }
+    },
+    "Обведено шматків: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pieces outlined: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обведено деталей: %lld"
+          }
+        }
+      }
+    },
+    "Пазл на %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-piece puzzle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пазл на %lld"
+          }
+        }
+      }
+    },
+    "Пазл отримано": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puzzle received"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пазл получен"
+          }
+        }
+      }
+    },
+    "Перевіряю шматки для ділянки: %lld з %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking pieces for the area: %lld of %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверяю детали для участка: %lld из %lld"
+          }
+        }
+      }
+    },
+    "Перетягніть кружечки точно в кути картини.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag the circles exactly onto the corners of the picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перетащите кружки точно в углы картины."
+          }
+        }
+      }
+    },
+    "Повернути": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotate"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повернуть"
+          }
+        }
+      }
+    },
+    "Повернути в розкидані": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back to loose pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вернуть в разбросанные"
+          }
+        }
+      }
+    },
+    "Поверніть шматок так, як на мініатюрі.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn the piece as shown in the thumbnail."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поверните деталь, как на миниатюре."
+          }
+        }
+      }
+    },
+    "Поклав(-ла)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Положил(а)"
+          }
+        }
+      }
+    },
+    "Поклав(-ла) на місце": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placed it"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Положил(а) на место"
+          }
+        }
+      }
+    },
+    "Покладено %lld з %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placed %lld of %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уложено %lld из %lld"
+          }
+        }
+      }
+    },
+    "Помилка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ошибка"
+          }
+        }
+      }
+    },
+    "Помилка нейромережі: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neural network error: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ошибка нейросети: %@"
+          }
+        }
+      }
+    },
+    "Потрібен доступ до камери": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera access needed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нужен доступ к камере"
+          }
+        }
+      }
+    },
+    "Потрібна, щоб поділити картинку на сітку — по клітинці на шматок.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needed to split the picture into a grid — one cell per piece."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нужно, чтобы разделить картинку на сетку — по клетке на деталь."
+          }
+        }
+      }
+    },
+    "Почати збирати": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start assembling"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начать собирать"
+          }
+        }
+      }
+    },
+    "Почнімо збирати": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let’s start"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начнём собирать"
+          }
+        }
+      }
+    },
+    "Почніть із цього шматка: рядок %lld, стовпець %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start with this piece: row %lld, column %lld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начните с этой детали: строка %lld, столбец %lld."
+          }
+        }
+      }
+    },
+    "Пошук зупинено": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search stopped"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поиск остановлен"
+          }
+        }
+      }
+    },
+    "Проведіть пальцем по картині, щоб виділити ділянку, яку збираєте зараз.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag your finger over the picture to select the area you are assembling now."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проведите пальцем по картине, чтобы выделить участок, который собираете сейчас."
+          }
+        }
+      }
+    },
+    "Пропущений шматок можна додати дотиком, а зайвий — видалити.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a missed piece with a tap, or delete a wrong one."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пропущенную деталь можно добавить касанием, а лишнюю — удалить."
+          }
+        }
+      }
+    },
+    "Підходять до ділянки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fit this area"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подходят к участку"
+          }
+        }
+      }
+    },
+    "Підходять: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fit: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подходят: %lld"
+          }
+        }
+      }
+    },
+    "Рамку картинки не знайдено — використаю фото як є. Обріжте його заздалегідь, якщо поруч є стіл.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Picture edges not found — the photo is used as is. Crop it beforehand if the table is visible."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рамка картинки не найдена — использую фото как есть. Обрежьте его заранее, если рядом виден стол."
+          }
+        }
+      }
+    },
+    "Режим": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим"
+          }
+        }
+      }
+    },
+    "Розкладіть шматки картинкою догори, бажано не один на одному.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lay the pieces picture side up, preferably not on top of each other."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разложите детали картинкой вверх, желательно не друг на друге."
+          }
+        }
+      }
+    },
+    "Рядки %@ · стовпці %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rows %@ · columns %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Строки %@ · столбцы %@"
+          }
+        }
+      }
+    },
+    "Рядок %lld · стовпець %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Row %lld · column %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Строка %lld · столбец %lld"
+          }
+        }
+      }
+    },
+    "Рівне світло без відблисків — так кольори ближчі до картини.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Even light without glare — colours stay closer to the picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ровный свет без бликов — так цвета ближе к картине."
+          }
+        }
+      }
+    },
+    "Скасувати": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отмена"
+          }
+        }
+      }
+    },
+    "Скинути": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сбросить"
+          }
+        }
+      }
+    },
+    "Створити пазл": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create puzzle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создать пазл"
+          }
+        }
+      }
+    },
+    "Сфотографувати": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Take photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографировать"
+          }
+        }
+      }
+    },
+    "Сфотографувати шматки для ділянки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photograph pieces for this area"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографировать детали для участка"
+          }
+        }
+      }
+    },
+    "Сфотографуйте всю картинку рівно, без відблисків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photograph the whole picture straight on, without glare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографируйте всю картинку ровно, без бликов"
+          }
+        }
+      }
+    },
+    "Сфотографуйте купку шматків — я перевірю кожен і підсвічу ті, що належать до цієї ділянки. Можна зробити кілька фото.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photograph a pile of pieces — I’ll check each one and highlight those that belong to this area. You can take several photos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографируйте кучку деталей — я проверю каждую и подсвечу те, что относятся к этому участку. Можно сделать несколько фото."
+          }
+        }
+      }
+    },
+    "Сфотографуйте розкидані шматки й торкніться будь-якого": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photograph loose pieces and tap any of them"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографируйте разбросанные детали и коснитесь любой"
+          }
+        }
+      }
+    },
+    "Сфотографуйте розкидані шматки — знайдені для цієї ділянки з'являться тут.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photograph loose pieces — those found for this area will appear here."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сфотографируйте разбросанные детали — найденные для этого участка появятся здесь."
+          }
+        }
+      }
+    },
+    "Сітка %lld × %lld = %lld клітинок": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grid %lld × %lld = %lld cells"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сетка %lld × %lld = %lld клеток"
+          }
+        }
+      }
+    },
+    "Сітка %lld × %lld · покладено %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grid %lld × %lld · placed %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сетка %lld × %lld · уложено %lld"
+          }
+        }
+      }
+    },
+    "Торкніться погано обведеного шматка, щоб прибрати його": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a badly outlined piece to remove it"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Коснитесь плохо обведённой детали, чтобы убрать её"
+          }
+        }
+      }
+    },
+    "Торкніться пропущеного шматка, щоб обвести його": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a missed piece to outline it"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Коснитесь пропущенной детали, чтобы обвести её"
+          }
+        }
+      }
+    },
+    "Торкніться шматка — покажу, де він на картині": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap a piece — I’ll show where it is on the picture"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Коснитесь детали — покажу, где она на картине"
+          }
+        }
+      }
+    },
+    "Тримайте телефон паралельно до столу": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold the phone parallel to the table"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Держите телефон параллельно столу"
+          }
+        }
+      }
+    },
+    "Тримайте телефон паралельно до столу; у кадрі 50–300 шматків.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold the phone parallel to the table; 50–300 pieces per photo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Держите телефон параллельно столу; в кадре 50–300 деталей."
+          }
+        }
+      }
+    },
+    "Тут не вдалося знайти шматок": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No piece found here"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Здесь не удалось найти деталь"
+          }
+        }
+      }
+    },
+    "Файл пазла пошкоджений.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The puzzle file is damaged."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл пазла повреждён."
+          }
+        }
+      }
+    },
+    "Фото для цієї ділянки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photos for this area"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото для этого участка"
+          }
+        }
+      }
+    },
+    "Фото коробки чи постера або картинка з інтернету.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A photo of the box or poster, or a picture from the internet."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото коробки или постера либо картинка из интернета."
+          }
+        }
+      }
+    },
+    "Фото розкиданих шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photo of loose pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото разбросанных деталей"
+          }
+        }
+      }
+    },
+    "Фото шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photos of pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото деталей"
+          }
+        }
+      }
+    },
+    "Це не файл пазла Puzzle Mate.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is not a Puzzle Mate puzzle file."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это не файл пазла Puzzle Mate."
+          }
+        }
+      }
+    },
+    "Це не шматок": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not a piece"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это не деталь"
+          }
+        }
+      }
+    },
+    "Цей пристрій не підтримує Metal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device does not support Metal."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это устройство не поддерживает Metal."
+          }
+        }
+      }
+    },
+    "Цей шматок на фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This piece on the photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эта деталь на фото"
+          }
+        }
+      }
+    },
+    "Шматки для «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pieces for “%@”"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детали для «%@»"
+          }
+        }
+      }
+    },
+    "Шматки на фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pieces on the photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детали на фото"
+          }
+        }
+      }
+    },
+    "Шматків не знайдено — спробуйте інше фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pieces found — try another photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Детали не найдены — попробуйте другое фото"
+          }
+        }
+      }
+    },
+    "Шматок": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piece"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталь"
+          }
+        }
+      }
+    },
+    "Шматок додано": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piece added"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталь добавлена"
+          }
+        }
+      }
+    },
+    "Шматок замалий для порівняння.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The piece is too small to compare."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталь слишком мала для сравнения."
+          }
+        }
+      }
+    },
+    "Шматок на мініатюрі повернутий так, як він лежить на картині.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The thumbnail is turned the way the piece sits in the picture."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталь на миниатюре повёрнута так, как она лежит на картине."
+          }
+        }
+      }
+    },
+    "Шматок прибрано": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piece removed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Деталь убрана"
+          }
+        }
+      }
+    },
+    "Шукати знову": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search again"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Искать снова"
+          }
+        }
+      }
+    },
+    "Шукаю місце на картині…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looking for its place on the picture…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ищу место на картине…"
+          }
+        }
+      }
+    },
+    "Шукаю шматки…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looking for pieces…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ищу детали…"
+          }
+        }
+      }
+    },
+    "Шукаю шматки… фрагмент %lld з %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looking for pieces… part %lld of %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ищу детали… фрагмент %lld из %lld"
+          }
+        }
+      }
+    },
+    "Ще не оброблено": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not processed yet"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ещё не обработано"
+          }
+        }
+      }
+    },
+    "Ще не покладено": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not placed yet"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ещё не уложено"
+          }
+        }
+      }
+    },
+    "Ще немає шматків для ділянки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pieces for this area yet"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пока нет деталей для участка"
+          }
+        }
+      }
+    },
+    "Ще одне фото шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another photo of pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ещё одно фото деталей"
+          }
+        }
+      }
+    },
+    "Як у системі": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As in system"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Как в системе"
+          }
+        }
+      }
+    },
+    "Як є": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As is"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Как есть"
+          }
+        }
+      }
+    },
+    "Якщо картину вирівняно неточно, натисніть «Кути» й поставте їх вручну. Потім поверніть її так, як вона виглядає на коробці.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If the picture isn’t straightened precisely, tap “Corners” and set them by hand. Then rotate it to match the box."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если картина выровнена неточно, нажмите «Углы» и поставьте их вручную. Затем поверните её так, как она выглядит на коробке."
+          }
+        }
+      }
+    },
+    "не вдалося підготувати фото": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "couldn’t prepare the photo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "не удалось подготовить фото"
+          }
+        }
+      }
+    },
+    "покладено %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld placed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "уложено %lld"
+          }
+        }
+      }
+    },
+    "р. %lld · ст. %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "r. %lld · c. %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "стр. %lld · ст. %lld"
+          }
+        }
+      }
+    },
+    "шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "деталей"
+          }
+        }
+      }
+    },
+    "ще %lld варіант(и)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld more option(s)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ещё %lld вариант(а)"
+          }
+        }
+      }
+    },
+    "єдиний варіант": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "the only option"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "единственный вариант"
+          }
+        }
+      }
+    },
+    "≈ %lld × %lld шматків": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≈ %lld × %lld pieces"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≈ %lld × %lld деталей"
+          }
+        }
+      }
+    }
+  }
+}

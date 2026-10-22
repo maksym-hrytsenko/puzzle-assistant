@@ -22,10 +22,13 @@ Tried and **rejected** for outlining pieces:
 ## Decision
 
 ### 1. Reference picture
-1. Find the photo of the full picture: the largest rectangular region whose colours
-   differ from the photo border (table).
-2. Refine the 4 corners with robust (Huber) line fits on each side, then
-   perspective-correct to an exact rectangle.
+1. iOS (`PictureBoundary.swift`): SAM 2.1 outlines the *table* (positive prompts along the
+   photo border, a negative one in the centre) — a busy picture is many objects for SAM, a
+   plain table is one, so this mask is clean. The picture = largest non-table region.
+   (Python bench: the largest region whose colours differ from the photo border.)
+2. Refine the 4 corners with robust line fits on each side, snap each side to the strongest
+   brightness edge on the photo, then perspective-correct to an exact rectangle. The user can
+   drag the corners manually if the automatic result is off.
 3. Optionally split it into a grid of N cells (N = piece count) to report locations as
    row/column.
 
@@ -81,6 +84,12 @@ gives the body square orientation; only 0/90/180/270° are then tried (± 2.5° 
   (cell = 16 px) and fine (cell = 40 px) levels; scale = grid cell / √(piece area) × {0.75…1.3}, then
   narrowed to the scale learned from the first confident match on the same photo.
 - `Vision/PuzzleEngine.swift` — background queue, caches models, reference textures, photos.
+
+## Sharing between phones
+No server and no paid developer account (CloudKit needs one): a puzzle is shared as a
+`.puzzlemate` file (manifest JSON + images, `Storage/PuzzleArchive.swift`) via AirDrop or a
+messenger. Opening it adds the puzzle or merges into the existing copy (new zones, photos,
+pieces; a piece placed on either phone stays placed). Deletions are not propagated.
 
 ## Consequences
 - Adds an ML dependency (SAM). On-device iOS needs a Core ML SAM 2.1 tiny/small model

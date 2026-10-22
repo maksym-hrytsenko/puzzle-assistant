@@ -34,6 +34,20 @@ guard let rectified = prepared.rectified, let picture = ReferencePreparer.rotate
     print("FAIL: poster edges not found"); exit(1)
 }
 saveJPEG(resized(picture, maxSide: 1600), "\(outDir)/ios_reference.jpg")
+if let corners = prepared.corners {
+    // Corners drawn on the original photo.
+    let w = reference.width / 3, h = reference.height / 3
+    let c = CGContext(data: nil, width: w, height: h, bitsPerComponent: 8, bytesPerRow: 0,
+                      space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+    c.draw(reference, in: CGRect(x: 0, y: 0, width: w, height: h))
+    c.setStrokeColor(NSColor.green.cgColor)
+    c.setLineWidth(3)
+    c.addLines(between: corners.map { CGPoint(x: $0.x * CGFloat(w), y: (1 - $0.y) * CGFloat(h)) })
+    c.closePath()
+    c.strokePath()
+    saveJPEG(c.makeImage()!, "\(outDir)/ios_reference_corners.jpg")
+    print("corners: \(corners.map { String(format: "(%.3f, %.3f)", $0.x, $0.y) })")
+}
 let grid = PuzzleGrid(pieceCount: 4000, width: picture.width, height: picture.height)
 print("reference rectified \(picture.width)x\(picture.height), grid \(grid.columns)x\(grid.rows)")
 
@@ -87,3 +101,25 @@ for (name, point) in samples {
     if hint == nil, let best = places.first, best.probability >= 0.6 { hint = best.scaleMultiplier }
 }
 
+
+if ProcessInfo.processInfo.environment["BOUNDARY_DIAG"] != nil {
+    let square = RGBAImage(cgImage: reference, width: 1024, height: 1024)!.cgImage()!
+    let emb = try sam.encode(square)
+    let variants: [(String, [(point: CGPoint, label: Int)])] = [
+        ("box+center", [(CGPoint(x: 512, y: 512), 1), (CGPoint(x: 10, y: 10), 2), (CGPoint(x: 1014, y: 1014), 3)]),
+        ("box only", [(CGPoint(x: 10, y: 10), 2), (CGPoint(x: 1014, y: 1014), 3)]),
+        ("border points", [(CGPoint(x: 12, y: 12), 1), (CGPoint(x: 512, y: 12), 1), (CGPoint(x: 1012, y: 12), 1),
+                           (CGPoint(x: 1012, y: 512), 1), (CGPoint(x: 1012, y: 1012), 1), (CGPoint(x: 512, y: 1012), 1),
+                           (CGPoint(x: 12, y: 1012), 1), (CGPoint(x: 12, y: 512), 1), (CGPoint(x: 512, y: 512), 0)]),
+    ]
+    for (name, prompts) in variants {
+        let masks = try sam.masks(for: prompts, in: emb)
+        for (i, m) in masks.enumerated() {
+            let pos = m.logits.filter { $0 > 0 }.count
+            print("bdiag \(name) mask \(i): score \(String(format: "%.2f", m.score)) share \(String(format: "%.2f", Double(pos) / 65536))")
+            var px = [UInt8](repeating: 0, count: 256 * 256 * 4)
+            for j in 0..<65536 { let v: UInt8 = m.logits[j] > 0 ? 255 : 0; px[j*4] = v; px[j*4+1] = v; px[j*4+2] = v; px[j*4+3] = 255 }
+            saveJPEG(RGBAImage(width: 256, height: 256, data: px).cgImage()!, "\(outDir)/bdiag_\(name.replacingOccurrences(of: " ", with: "_"))_\(i).jpg")
+        }
+    }
+}

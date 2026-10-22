@@ -9,9 +9,9 @@ enum SAMError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .modelsMissing:
-            return "Моделі SAM 2.1 не знайдено в застосунку. Запустіть scripts/download_sam_models.sh і зберіть застосунок знову."
+            return String(localized: "Моделі SAM 2.1 не знайдено в застосунку. Запустіть scripts/download_sam_models.sh і зберіть застосунок знову.")
         case .predictionFailed(let message):
-            return "Помилка нейромережі: \(message)"
+            return String(localized: "Помилка нейромережі: \(message)")
         }
     }
 }
@@ -81,11 +81,19 @@ final class SAMSegmenter {
 
     /// Masks for one positive point (tile pixel coordinates), best score first.
     func masks(for point: CGPoint, in embedding: TileEmbedding) throws -> [Mask] {
-        let points = try MLMultiArray(shape: [1, 1, 2], dataType: .float16)
-        points[[0, 0, 0]] = NSNumber(value: Float(point.x))
-        points[[0, 0, 1]] = NSNumber(value: Float(point.y))
-        let labels = try MLMultiArray(shape: [1, 1], dataType: .float16)
-        labels[[0, 0]] = 1
+        try masks(for: [(point, 1)], in: embedding)
+    }
+
+    /// Prompt labels: 1 = on the object, 0 = not on it, 2/3 = top-left/bottom-right box corner.
+    func masks(for prompts: [(point: CGPoint, label: Int)], in embedding: TileEmbedding) throws -> [Mask] {
+        let n = prompts.count as NSNumber
+        let points = try MLMultiArray(shape: [1, n, 2], dataType: .float16)
+        let labels = try MLMultiArray(shape: [1, n], dataType: .float16)
+        for (i, prompt) in prompts.enumerated() {
+            points[[0, i, 0] as [NSNumber]] = NSNumber(value: Float(prompt.point.x))
+            points[[0, i, 1] as [NSNumber]] = NSNumber(value: Float(prompt.point.y))
+            labels[[0, i] as [NSNumber]] = NSNumber(value: prompt.label)
+        }
         let prompt = try promptEncoder.prediction(from: MLDictionaryFeatureProvider(dictionary: [
             "points": MLFeatureValue(multiArray: points),
             "labels": MLFeatureValue(multiArray: labels),

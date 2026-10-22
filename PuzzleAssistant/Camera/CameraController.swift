@@ -5,6 +5,11 @@ final class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureD
     let session = AVCaptureSession()
     private let photoOutput = AVCapturePhotoOutput()
     private var captureCompletion: ((UIImage?) -> Void)?
+    private var device: AVCaptureDevice?
+    /// Keeps preview and photos upright in any phone orientation.
+    private var rotationCoordinator: AVCaptureDevice.RotationCoordinator?
+    private var rotationObservation: NSKeyValueObservation?
+    private weak var previewLayer: AVCaptureVideoPreviewLayer?
 
     @Published var setupError: String?
 
@@ -21,6 +26,8 @@ final class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureD
             return
         }
         session.addInput(input)
+        self.device = device
+        setUpRotation()
 
         guard session.canAddOutput(photoOutput) else {
             setupError = "Unable to configure photo output."
@@ -29,6 +36,24 @@ final class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureD
         }
         session.addOutput(photoOutput)
         session.commitConfiguration()
+    }
+
+    /// Called by the preview view once its layer exists.
+    func attach(previewLayer: AVCaptureVideoPreviewLayer) {
+        self.previewLayer = previewLayer
+        setUpRotation()
+    }
+
+    /// Needs both the camera (configure) and the preview layer, whichever comes last.
+    private func setUpRotation() {
+        guard let device, let previewLayer, rotationCoordinator == nil else { return }
+        let coordinator = AVCaptureDevice.RotationCoordinator(device: device, previewLayer: previewLayer)
+        rotationCoordinator = coordinator
+        previewLayer.connection?.videoRotationAngle = coordinator.videoRotationAngleForHorizonLevelPreview
+        rotationObservation = coordinator.observe(\.videoRotationAngleForHorizonLevelPreview, options: [.new]) { [weak previewLayer] _, change in
+            guard let angle = change.newValue else { return }
+            DispatchQueue.main.async { previewLayer?.connection?.videoRotationAngle = angle }
+        }
     }
 
     func start() {
@@ -47,6 +72,10 @@ final class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureD
 
     func capturePhoto(completion: @escaping (UIImage?) -> Void) {
         captureCompletion = completion
+        if let angle = rotationCoordinator?.videoRotationAngleForHorizonLevelCapture,
+           let connection = photoOutput.connection(with: .video), connection.isVideoRotationAngleSupported(angle) {
+            connection.videoRotationAngle = angle
+        }
         photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
 

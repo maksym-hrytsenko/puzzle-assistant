@@ -65,7 +65,7 @@ final class PieceDetector {
 
     func detect(in photo: CGImage, isCancelled: () -> Bool = { false },
                 progress: (Double, String) -> Void) throws -> DetectionResult {
-        progress(0, "Готую фото…")
+        progress(0, String(localized: "Готую фото…"))
         let work = try prepare(photo)
         let tiles = tileOrigins(width: work.width, height: work.height)
 
@@ -82,7 +82,7 @@ final class PieceDetector {
         var covered = [Bool](repeating: false, count: work.gridWidth * work.gridHeight)
         for (index, origin) in tiles.enumerated() {
             if isCancelled() { throw CancellationError() }
-            progress(Double(index) / Double(tiles.count) * 0.95, "Шукаю шматки… фрагмент \(index + 1) з \(tiles.count)")
+            progress(Double(index) / Double(tiles.count) * 0.95, String(localized: "Шукаю шматки… фрагмент \(index + 1) з \(tiles.count)"))
             guard let tileImage = work.image.cropping(to: CGRect(origin: origin, size: CGSize(width: PieceDetector.tile, height: PieceDetector.tile))) else { continue }
             let embedding = try sam.encode(tileImage)
             let tileWidth = CGFloat(tileImage.width), tileHeight = CGFloat(tileImage.height)
@@ -102,7 +102,7 @@ final class PieceDetector {
             }
         }
 
-        progress(0.96, "Відбираю цілі шматки…")
+        progress(0.96, String(localized: "Відбираю цілі шматки…"))
         // Typical piece size: per prompt point the largest piece-like mask (a detail
         // printed on a piece is smaller than the piece). Many points land on such
         // details, so the upper quartile is used rather than the median.
@@ -110,7 +110,7 @@ final class PieceDetector {
         let background = work.background.withAssembledRegion(pieceSide: sqrt(typical * 16) / 2)
         let kept = select(candidates, typical: typical, work: work, background: background)
         let pieces = kept.map { outline(from: $0, work: work) }
-        progress(1, "Готово")
+        progress(1, String(localized: "Готово"))
         return DetectionResult(pieces: pieces, colorStats: colorStats(of: kept, work: work),
                                typicalArea: typical * 16 / Double(work.scale * work.scale))
     }
@@ -144,7 +144,7 @@ final class PieceDetector {
         guard let rgba = RGBAImage(cgImage: photo, width: width, height: height),
               let image = rgba.cgImage(),
               let half = RGBAImage(cgImage: image, width: width / 2, height: height / 2) else {
-            throw SAMError.predictionFailed("не вдалося підготувати фото")
+            throw SAMError.predictionFailed(String(localized: "не вдалося підготувати фото"))
         }
         return Work(image: image, rgba: rgba, scale: scale, background: BackgroundModel(image: half))
     }

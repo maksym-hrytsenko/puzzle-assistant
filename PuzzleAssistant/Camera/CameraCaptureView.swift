@@ -2,7 +2,7 @@ import SwiftUI
 import AVFoundation
 
 struct CameraCaptureView: View {
-    let instructions: String
+    let instructions: LocalizedStringKey
     let onCapture: (UIImage) -> Void
 
     @StateObject private var controller = CameraController()
@@ -25,8 +25,10 @@ struct CameraCaptureView: View {
                     }
                     .padding()
                 } else {
-                    CameraPreviewView(session: controller.session)
-                        .ignoresSafeArea()
+                    CameraPreviewView(session: controller.session) { layer in
+                        controller.attach(previewLayer: layer)
+                    }
+                    .ignoresSafeArea()
                 }
 
                 VStack(spacing: 16) {

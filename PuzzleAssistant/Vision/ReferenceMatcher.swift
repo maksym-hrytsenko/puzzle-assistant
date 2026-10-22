@@ -14,6 +14,8 @@ struct PlacementCandidate: Codable, Identifiable, Sendable {
     var rotationDegrees: Double
     /// Multiplier on the grid-derived scale (reused as a hint for the same photo).
     var scaleMultiplier: Double
+    /// Size of one photo pixel in grid cells (to draw the piece's photo at its place).
+    var cellsPerPhotoPixel: Double?
     var score: Double
     var probability: Double
     var row: Int
@@ -27,9 +29,9 @@ enum MatchError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .metalUnavailable: return "Цей пристрій не підтримує Metal."
-        case .referenceUnavailable: return "Не вдалося підготувати зображення пазла."
-        case .pieceTooSmall: return "Шматок замалий для порівняння."
+        case .metalUnavailable: return String(localized: "Цей пристрій не підтримує Metal.")
+        case .referenceUnavailable: return String(localized: "Не вдалося підготувати зображення пазла.")
+        case .pieceTooSmall: return String(localized: "Шматок замалий для порівняння.")
         }
     }
 }
@@ -285,6 +287,7 @@ final class ReferenceMatcher {
             let nx = place.x / Double(fineSize.width), ny = place.y / Double(fineSize.height)
             result.append(PlacementCandidate(x: nx, y: ny, outline: Geometry.simplify(outline, tolerance: 0.0004),
                                              rotationDegrees: place.pose.angle, scaleMultiplier: place.pose.scale,
+                                             cellsPerPhotoPixel: factor / fine.cell,
                                              score: Double(place.score),
                                              probability: probability,
                                              row: min(rows, Int(ny * Double(rows)) + 1),

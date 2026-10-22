@@ -6,6 +6,8 @@ struct PuzzleListView: View {
     @Query(sort: \Puzzle.createdAt, order: .reverse) private var puzzles: [Puzzle]
     @State private var showNewPuzzle = false
     @State private var path: [Puzzle] = []
+    @State private var importMessage: String?
+    @State private var isImporting = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -33,13 +35,27 @@ struct PuzzleListView: View {
             .navigationTitle("Мої пазли")
             .navigationDestination(for: Puzzle.self) { PuzzleHomeView(puzzle: $0) }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) { LanguageMenu() }
                 if !puzzles.isEmpty {
-                    Button { showNewPuzzle = true } label: {
-                        Image(systemName: "plus.circle.fill").font(.title2)
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { showNewPuzzle = true } label: {
+                            Image(systemName: "plus.circle.fill").font(.title2)
+                        }
                     }
                 }
             }
             .sheet(isPresented: $showNewPuzzle) { NewPuzzleView() }
+            .onOpenURL { url in importPuzzle(from: url) }
+            .overlay {
+                if isImporting {
+                    ProgressView("Відкриваю пазл…")
+                        .padding(24)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 18))
+                }
+            }
+            .alert("Пазл отримано", isPresented: .constant(importMessage != nil)) {
+                Button("OK") { importMessage = nil }
+            } message: { Text(importMessage ?? "") }
             #if DEBUG
             .task { seedDemoIfRequested() }
             #endif
@@ -89,6 +105,27 @@ struct PuzzleListView: View {
             Spacer()
         }
         .padding()
+    }
+
+    /// Opens a .puzzlemate file shared from another phone.
+    private func importPuzzle(from url: URL) {
+        isImporting = true
+        Task {
+            do {
+                let manifest = try await Task.detached(priority: .userInitiated) { try PuzzleArchive.read(url) }.value
+                let summary = try PuzzleArchive.merge(manifest, into: modelContext)
+                Haptics.success()
+                if summary.isNew {
+                    importMessage = String(localized: "«\(summary.puzzleName)» додано: \(summary.newCaptures) фото шматків, \(summary.newZones) ділянок.")
+                } else {
+                    importMessage = String(localized: "«\(summary.puzzleName)» оновлено: нових фото \(summary.newCaptures), ділянок \(summary.newZones), покладених шматків \(summary.newlyPlaced).")
+                }
+                if let puzzle = puzzles.first(where: { $0.id == manifest.puzzle.id }) { path = [puzzle] }
+            } catch {
+                importMessage = error.localizedDescription
+            }
+            isImporting = false
+        }
     }
 
     private func delete(_ puzzle: Puzzle) {
